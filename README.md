@@ -8,7 +8,7 @@
 
 **MindMerge** is a captivating puzzle game that challenges your memory, logic, and pattern recognition skills. Merge colorful shapes to unlock new patterns and reach the ultimate **MindMerge tile**! Inspired by 2048's clean design with a fresh twist on gameplay.
 
-[![Play Now](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](https://your-deployed-link.com)
+[![Play Now](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)]([https://codemaster001-yash.github.io/MindMerge/])
 
 ## 🚀 Features
 
