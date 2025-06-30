@@ -3,14 +3,12 @@
 # 🧠 MindMerge - Shape Merging Puzzle Game
 
 <div align="center">
-  <img src="https://img.itch.zone/aW1nLzE0MjU0MjQ0LnBuZw==/315x250%23c/%2F%2F%2B.png" alt="MindMerge Screenshot" width="300">
   <p><em>"Where shapes collide and minds expand!"</em></p>
 </div>
 
 **MindMerge** is a captivating puzzle game that challenges your memory, logic, and pattern recognition skills. Merge colorful shapes to unlock new patterns and reach the ultimate **MindMerge tile**! Inspired by 2048's clean design with a fresh twist on gameplay.
 
-[![Play Now](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](https://your-deployed-link.com) 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Play Now](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](https://your-deployed-link.com)
 
 ## 🚀 Features
 
