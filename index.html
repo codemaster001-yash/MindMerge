@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindMerge - Fixed Tile Placement</title>
+    <title>MindMerge - Final Version</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,7 +19,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             padding: 20px;
             color: #f0f0f0;
             overflow-x: hidden;
@@ -143,7 +142,7 @@
             background: rgba(255, 255, 255, 0.08);
             border-radius: 8px;
             padding: 10px;
-            position: relative; /* Added for tile positioning */
+            position: relative;
         }
         
         .grid-cell {
@@ -195,49 +194,17 @@
         .triangle {
             width: 0;
             height: 0;
-            border-left: 30% solid transparent;
-            border-right: 30% solid transparent;
-            border-bottom: 60% solid currentColor;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 26px solid currentColor;
         }
         
         .star {
             position: relative;
-            display: block;
-            color: currentColor;
-            width: 0;
-            height: 0;
-            border-right: 30% solid transparent;
-            border-bottom: 20% solid currentColor;
-            border-left: 30% solid transparent;
-            transform: rotate(35deg);
-        }
-        
-        .star:before {
-            position: absolute;
-            display: block;
-            content: '';
-            top: -12.5%;
-            left: -30%;
-            width: 0;
-            height: 0;
-            border-right: 30% solid transparent;
-            border-bottom: 20% solid currentColor;
-            border-left: 30% solid transparent;
-            transform: rotate(-70deg);
-        }
-        
-        .star:after {
-            position: absolute;
-            display: block;
-            content: '';
-            top: 2.5%;
-            left: -37.5%;
-            width: 0;
-            height: 0;
-            border-right: 30% solid transparent;
-            border-bottom: 20% solid currentColor;
-            border-left: 30% solid transparent;
-            transform: rotate(-35deg);
+            width: 100%;
+            height: 100%;
+            background: currentColor;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
         
         .diamond {
@@ -291,6 +258,7 @@
             justify-content: space-between;
             margin-top: 15px;
             flex-wrap: wrap;
+            gap: 5px;
         }
         
         .merge-step {
@@ -303,12 +271,19 @@
         }
         
         .merge-shape {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             margin-bottom: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+        
+        .merge-shape .shape {
+            width: 70%;
+            height: 70%;
         }
         
         .merge-arrow {
@@ -357,26 +332,30 @@
             max-width: 80%;
         }
         
+        .game-message .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
         .hint-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.7);
-            display: flex;
+            display: none;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 50;
             border-radius: 12px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
+            animation: fadeIn 0.3s;
         }
         
         .hint-overlay.visible {
-            opacity: 1;
-            pointer-events: all;
+            display: flex;
         }
         
         .hint-content {
@@ -442,6 +421,15 @@
         .mobile-btn.right { grid-column: 3; grid-row: 2; }
         .mobile-btn.down { grid-column: 2; grid-row: 3; }
         
+        .swipe-hint {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #ffd700;
+            opacity: 0.8;
+            display: none;
+        }
+        
         @media (max-width: 500px) {
             .title {
                 font-size: 2.2rem;
@@ -479,6 +467,14 @@
             .mobile-controls {
                 width: 130px;
                 height: 130px;
+            }
+            
+            .merge-chain {
+                justify-content: center;
+            }
+            
+            .merge-step {
+                min-width: 70px;
             }
         }
     </style>
@@ -524,8 +520,10 @@
             <div class="game-message" id="game-message">
                 <h2 id="message-title">You Win!</h2>
                 <p id="message-text">Congratulations! You've reached the MindMerge tile.</p>
-                <button class="btn" id="keep-playing-btn">Keep Playing</button>
-                <button class="btn" id="new-game-btn">New Game</button>
+                <div class="btn-container">
+                    <button class="btn" id="keep-playing-btn">Keep Playing</button>
+                    <button class="btn" id="new-game-btn">New Game</button>
+                </div>
             </div>
             
             <div class="hint-overlay" id="hint-overlay">
@@ -605,6 +603,10 @@
             <button class="mobile-btn right" id="right-btn"><i class="fas fa-arrow-right"></i></button>
             <button class="mobile-btn down" id="down-btn"><i class="fas fa-arrow-down"></i></button>
         </div>
+        
+        <div class="swipe-hint" id="swipe-hint">
+            <i class="fas fa-hand-point-up"></i> Swipe to move tiles on mobile
+        </div>
     </div>
 
     <script>
@@ -618,6 +620,13 @@
             let gameOver = false;
             let gameWon = false;
             let gridStateHistory = [];
+            let winShown = false; // Track if win message has been shown
+            
+            // Swipe detection variables
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
             
             // DOM elements
             const gridContainer = document.getElementById('grid-container');
@@ -626,6 +635,7 @@
             const messageTitle = document.getElementById('message-title');
             const messageText = document.getElementById('message-text');
             const hintOverlay = document.getElementById('hint-overlay');
+            const swipeHint = document.getElementById('swipe-hint');
             
             // Initialize the game
             function initGame() {
@@ -650,8 +660,73 @@
                 document.getElementById('left-btn').addEventListener('click', () => moveTiles('left'));
                 document.getElementById('right-btn').addEventListener('click', () => moveTiles('right'));
                 
+                // Add touch event listeners for swipe
+                gridContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+                gridContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+                gridContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
+                
                 // Handle window resize for responsive tiles
                 window.addEventListener('resize', render);
+                
+                // Detect if user is on mobile
+                if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                    swipeHint.style.display = 'block';
+                }
+            }
+            
+            // Touch event handlers for swipe detection
+            function handleTouchStart(event) {
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
+            }
+            
+            function handleTouchMove(event) {
+                // Allow scrolling if user is not on the grid
+                if (event.target !== gridContainer && !gridContainer.contains(event.target)) {
+                    return;
+                }
+                
+                // Prevent scrolling only when we're tracking a potential swipe on the grid
+                if (Math.abs(event.touches[0].clientX - touchStartX) > 10 || 
+                    Math.abs(event.touches[0].clientY - touchStartY) > 10) {
+                    event.preventDefault();
+                }
+            }
+            
+            function handleTouchEnd(event) {
+                touchEndX = event.changedTouches[0].clientX;
+                touchEndY = event.changedTouches[0].clientY;
+                
+                handleSwipe();
+            }
+            
+            // Determine swipe direction
+            function handleSwipe() {
+                const diffX = touchEndX - touchStartX;
+                const diffY = touchEndY - touchStartY;
+                
+                // Minimum swipe distance to register as a move
+                const minSwipeDistance = 30;
+                
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    // Horizontal swipe
+                    if (Math.abs(diffX) > minSwipeDistance) {
+                        if (diffX > 0) {
+                            moveTiles('right');
+                        } else {
+                            moveTiles('left');
+                        }
+                    }
+                } else {
+                    // Vertical swipe
+                    if (Math.abs(diffY) > minSwipeDistance) {
+                        if (diffY > 0) {
+                            moveTiles('down');
+                        } else {
+                            moveTiles('up');
+                        }
+                    }
+                }
             }
             
             // Create the grid structure
@@ -724,6 +799,7 @@
                     score = prevState.score;
                     gameWon = prevState.gameWon;
                     gameOver = false;
+                    winShown = false; // Reset win shown state
                     
                     updateScore(score);
                     render();
@@ -876,8 +952,9 @@
                     addRandomTile();
                     render();
                     
-                    if (checkWin()) {
+                    if (checkWin() && !winShown) {
                         showMessage('You Win!', 'Congratulations! You\'ve reached the MindMerge tile.');
+                        winShown = true;
                         gameWon = true;
                     } else if (checkGameOver()) {
                         showMessage('Game Over!', 'No more moves possible. Try again!');
@@ -1036,6 +1113,7 @@
                 score = 0;
                 gameOver = false;
                 gameWon = false;
+                winShown = false;
                 updateScore(0);
                 createGrid();
                 addStartTiles();
