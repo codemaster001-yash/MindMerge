@@ -22,10 +22,11 @@
 
 ## 🎮 How to Play
 
-```mermaid
-graph LR
-    A[Circle] + A --> B[Square]
-    B + B --> C[Triangle]
-    C + C --> D[Star]
-    D + D --> E[Diamond]
-    E + E --> F[MindMerge]
+ ```mermaid
+ graph LR
+     A[Circle] -->|Merge| B[Square]
+     B -->|Merge| C[Triangle]
+     C -->|Merge| D[Star]
+     D -->|Merge| E[Diamond]
+     E -->|Merge| F[MindMerge]
+ ```
