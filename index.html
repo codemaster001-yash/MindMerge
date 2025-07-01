@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindMerge - Final Version</title>
+    <title>MindMerge - Enhanced Gameplay</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -430,6 +430,14 @@
             display: none;
         }
         
+        .game-rules {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
         @media (max-width: 500px) {
             .title {
                 font-size: 2.2rem;
@@ -531,6 +539,7 @@
                     <h3>Strategy Tip</h3>
                     <p>Try to merge your tiles toward one corner to create larger shapes more efficiently.</p>
                     <p>Focus on creating chains: Circles → Squares → Triangles → Stars → Diamonds → MindMerge</p>
+                    <p><strong>NEW:</strong> Merging two MindMerge tiles creates a new random shape!</p>
                     <button class="btn hint-btn" id="close-hint-btn">Got It!</button>
                 </div>
             </div>
@@ -540,6 +549,10 @@
             <h2>How to Play</h2>
             <p>Use your <strong>arrow keys</strong> or swipe to move the tiles. When two tiles with the same shape touch, they merge into the next shape!</p>
             <p>Reach the <strong>MindMerge</strong> tile to win the game. Try to get the highest score!</p>
+            
+            <div class="game-rules">
+                <p><strong>NEW RULE:</strong> When two MindMerge tiles merge, they create a new random shape (Circle, Square, Triangle, Star, or Diamond) to keep the game going!</p>
+            </div>
             
             <div class="merge-chain">
                 <div class="merge-step">
@@ -991,9 +1004,19 @@
                         grid[nextRow][nextCol].value === grid[currentRow][currentCol].value && 
                         !grid[nextRow][nextCol].merged
                     ) {
-                        grid[nextRow][nextCol].value++;
-                        grid[nextRow][nextCol].merged = true;
-                        updateScore(score + (2 ** grid[nextRow][nextCol].value) * 10);
+                        // Special handling for merging two MindMerge tiles (level 5)
+                        if (grid[nextRow][nextCol].value === 5) {
+                            // Create a new random tile (0-4) and give bonus points
+                            grid[nextRow][nextCol].value = Math.floor(Math.random() * 5);
+                            grid[nextRow][nextCol].merged = true;
+                            updateScore(score + 10000); // Big bonus for merging MindMerge tiles
+                        } else {
+                            // Normal merge for other tiles
+                            grid[nextRow][nextCol].value++;
+                            grid[nextRow][nextCol].merged = true;
+                            updateScore(score + (2 ** grid[nextRow][nextCol].value) * 10);
+                        }
+                        
                         grid[currentRow][currentCol] = null;
                         moved = true;
                         break;
