@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             min-height: 100vh;
@@ -23,13 +24,13 @@
             color: #f0f0f0;
             overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 500px;
             width: 100%;
             margin: 0 auto;
         }
-        
+
         header {
             display: flex;
             justify-content: space-between;
@@ -37,49 +38,66 @@
             margin-bottom: 20px;
             width: 100%;
         }
-        
+
         .title {
             font-size: 2.8rem;
             font-weight: 700;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
-        
+
         .score-container {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 10px 20px;
             text-align: center;
-            min-width: 120px;
+            min-width: 100px;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
+        .best-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            min-width: 100px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 0.85rem;
+        }
+
+        .best-score {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
         .score-title {
             font-size: 1rem;
             font-weight: 600;
             color: #ffd700;
             margin-bottom: 5px;
         }
-        
+
         .score {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #fff;
         }
-        
+
         .game-info {
             display: flex;
             justify-content: space-between;
             margin-bottom: 25px;
             gap: 15px;
         }
-        
+
         .controls {
             display: flex;
             gap: 10px;
         }
-        
+
         .btn {
             background: rgba(255, 215, 0, 0.85);
             color: #16213e;
@@ -95,33 +113,232 @@
             gap: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn:hover {
             background: #ffd700;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-        
+
         .btn:active {
             transform: translateY(1px);
         }
-        
+
         .hint-btn {
-            background: rgba(75, 192, 192, 0.85);
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .hint-btn:hover {
-            background: #4bc0c0;
+            background: #4bc0c5;
         }
-        
+
         .dark-mode-btn {
-            background: rgba(106, 90, 205, 0.85);
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
+        .hint-btn i,
+        .dark-mode-btn i {
+            margin-right: 0;
+        }
+
         .dark-mode-btn:hover {
             background: #6a5acd;
         }
-        
+
+        /* --- LIGHT PEACH MODE COLOR SCHEME --- */
+        body.light-mode {
+            background: linear-gradient(135deg, #ffe5d0 0%, #ffd6e0 100%) !important;
+            color: #3a2c1a !important;
+        }
+
+        body.light-mode .title {
+            color: #ff8c42;
+            text-shadow: 0 0 10px rgba(255, 140, 66, 0.12);
+        }
+
+        body.light-mode .score-container,
+        body.light-mode .best-container {
+            background: #fff3e6;
+            color: #3a2c1a;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.10);
+            border: 1.5px solid #ffd6b3;
+        }
+
+        body.light-mode .score,
+        body.light-mode .best-score {
+            color: #ff8c42;
+        }
+
+        body.light-mode .score-title {
+            color: #ff8c42;
+        }
+
+        body.light-mode .btn {
+            background: rgba(255, 140, 66, 0.13);
+            color: #3a2c1a;
+        }
+
+        body.light-mode .btn:hover {
+            background: #ff8c42;
+            color: #fff;
+        }
+
+        body.light-mode .leaderboard-btn {
+            background: rgba(255, 140, 66, 0.13);
+            color: #ff8c42;
+        }
+
+        body.light-mode .leaderboard-btn:hover {
+            background: #ff8c42;
+            color: #fff;
+        }
+
+        body.light-mode .hint-btn {
+            background: #ffb385;
+            color: #fff;
+        }
+
+        body.light-mode .hint-btn:hover {
+            background: #ff8c42;
+        }
+
+        body.light-mode .dark-mode-btn {
+            background: #ffd700;
+            color: #ff8c42;
+        }
+
+        body.light-mode .dark-mode-btn:hover {
+            background: #ff8c42;
+            color: #ffd700;
+        }
+
+        body.light-mode .game-container {
+            background: #fff3e6;
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.10);
+            border: 2px solid #ffd6b3;
+        }
+
+        body.light-mode .grid-container {
+            background: #ffe5d0;
+            border-radius: 8px;
+            border: 1.5px solid #ffd6b3;
+        }
+
+        body.light-mode .grid-cell {
+            background: #fff3e6;
+            border: 1px solid #ffd6b3;
+        }
+
+        body.light-mode .tile {
+            box-shadow: 0 2px 8px rgba(255, 140, 66, 0.10);
+            border: 1.5px solid #ffd6b3;
+        }
+
+        body.light-mode .game-message,
+        body.light-mode .game-message.win {
+            background: rgba(255, 140, 66, 0.12);
+            color: #3a2c1a;
+        }
+
+        body.light-mode .merge-shape {
+            background: rgba(255, 140, 66, 0.08);
+        }
+
+        body.light-mode .merge-arrow,
+        body.light-mode .flip-note {
+            color: #ff8c42;
+        }
+
+        body.light-mode .game-rules {
+            background: rgba(255, 140, 66, 0.08);
+            border-left: 4px solid #ff8c42;
+            color: #3a2c1a;
+        }
+
+        body.light-mode .hint-overlay,
+        body.light-mode .leaderboard-overlay {
+            background: rgba(255, 229, 208, 0.92);
+        }
+
+        body.light-mode .swipe-hint {
+            color: #ff8c42;
+        }
+
+        /* --- IMPROVED LIGHT MODE VISIBILITY --- */
+        body.light-mode .score-container,
+        body.light-mode .best-container {
+            background: #fff;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(106, 90, 205, 0.10);
+            border: 1.5px solid #d1d5db;
+        }
+
+        body.light-mode .score,
+        body.light-mode .best-score {
+            color: #6a5acd;
+        }
+
+        body.light-mode .score-title {
+            color: #6a5acd;
+        }
+
+        body.light-mode .game-container {
+            background: #f7f8fa;
+            box-shadow: 0 10px 30px rgba(106, 90, 205, 0.10);
+            border: 2px solid #e0e4ef;
+        }
+
+        body.light-mode .grid-container {
+            background: #e9eaf3;
+            border-radius: 8px;
+            border: 1.5px solid #d1d5db;
+        }
+
+        body.light-mode .grid-cell {
+            background: #fff;
+            border: 1px solid #e0e4ef;
+        }
+
+        body.light-mode .tile {
+            box-shadow: 0 2px 8px rgba(106, 90, 205, 0.10);
+            border: 1.5px solid #d1d5db;
+        }
+
+        .leaderboard-btn {
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            font-size: 1.3rem;
+            background: rgba(255, 215, 0, 0.85);
+            color: #16213e;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaderboard-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
         .game-container {
             position: relative;
             background: rgba(255, 255, 255, 0.05);
@@ -131,7 +348,7 @@
             backdrop-filter: blur(10px);
             margin-bottom: 25px;
         }
-        
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -144,7 +361,7 @@
             padding: 10px;
             position: relative;
         }
-        
+
         .grid-cell {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 6px;
@@ -152,7 +369,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .tile {
             position: absolute;
             display: flex;
@@ -165,32 +382,62 @@
             animation: appear 0.2s;
             z-index: 10;
         }
-        
+
         .tile.merged {
             animation: pop 0.3s;
         }
-        
-        .tile.level-0 { background: #EEE4DA; color: #776e65; } /* Circle */
-        .tile.level-1 { background: #EDE0C8; color: #776e65; } /* Square */
-        .tile.level-2 { background: #F2B179; color: #f9f6f2; } /* Triangle */
-        .tile.level-3 { background: #F59563; color: #f9f6f2; } /* Star */
-        .tile.level-4 { background: #F67C5F; color: #f9f6f2; } /* Diamond */
-        .tile.level-5 { background: #F65E3B; color: #f9f6f2; } /* MindMerge */
-        
+
+        .tile.level-0 {
+            background: #EEE4DA;
+            color: #776e65;
+        }
+
+        /* Circle */
+        .tile.level-1 {
+            background: #EDE0C8;
+            color: #776e65;
+        }
+
+        /* Square */
+        .tile.level-2 {
+            background: #F2B179;
+            color: #f9f6f2;
+        }
+
+        /* Triangle */
+        .tile.level-3 {
+            background: #F59563;
+            color: #f9f6f2;
+        }
+
+        /* Star */
+        .tile.level-4 {
+            background: #F67C5F;
+            color: #f9f6f2;
+        }
+
+        /* Diamond */
+        .tile.level-5 {
+            background: #F65E3B;
+            color: #f9f6f2;
+        }
+
+        /* MindMerge */
+
         .shape {
             width: 60%;
             height: 60%;
         }
-        
+
         .circle {
             background: currentColor;
             border-radius: 50%;
         }
-        
+
         .square {
             background: currentColor;
         }
-        
+
         .triangle {
             width: 0;
             height: 0;
@@ -198,7 +445,7 @@
             border-right: 15px solid transparent;
             border-bottom: 26px solid currentColor;
         }
-        
+
         .star {
             position: relative;
             width: 100%;
@@ -206,14 +453,14 @@
             background: currentColor;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
-        
+
         .diamond {
             width: 60%;
             height: 60%;
             background: currentColor;
             transform: rotate(45deg);
         }
-        
+
         .mindmerge {
             position: relative;
             width: 60%;
@@ -222,7 +469,7 @@
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-        
+
         .mindmerge:after {
             content: "M";
             position: absolute;
@@ -233,7 +480,7 @@
             font-weight: bold;
             color: white;
         }
-        
+
         .instructions {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 12px;
@@ -241,18 +488,18 @@
             margin-top: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .instructions h2 {
             color: #ffd700;
             margin-bottom: 15px;
             font-size: 1.5rem;
         }
-        
+
         .instructions p {
             margin-bottom: 10px;
             line-height: 1.6;
         }
-        
+
         .merge-chain {
             display: flex;
             justify-content: space-between;
@@ -260,7 +507,7 @@
             flex-wrap: wrap;
             gap: 5px;
         }
-        
+
         .merge-step {
             display: flex;
             flex-direction: column;
@@ -269,7 +516,7 @@
             min-width: 80px;
             margin: 5px;
         }
-        
+
         .merge-shape {
             width: 50px;
             height: 50px;
@@ -280,19 +527,19 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 6px;
         }
-        
+
         .merge-shape .shape {
             width: 70%;
             height: 70%;
         }
-        
+
         .merge-arrow {
             font-size: 1.5rem;
             margin: 0 5px;
             color: #ffd700;
             align-self: center;
         }
-        
+
         .game-message {
             position: absolute;
             top: 0;
@@ -310,34 +557,34 @@
             padding: 20px;
             animation: fadeIn 0.5s;
         }
-        
+
         .game-message.win {
             background: rgba(106, 90, 205, 0.9);
         }
-        
+
         .game-message.visible {
             display: flex;
         }
-        
+
         .game-message h2 {
             font-size: 3rem;
             margin-bottom: 20px;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
-        
+
         .game-message p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             max-width: 80%;
         }
-        
+
         .game-message .btn-container {
             display: flex;
             gap: 15px;
             margin-top: 10px;
         }
-        
+
         .hint-overlay {
             position: absolute;
             top: 0;
@@ -353,11 +600,93 @@
             border-radius: 12px;
             animation: fadeIn 0.3s;
         }
-        
+
+        .got-it-btn {
+            margin: 18px auto 0 auto;
+            display: block;
+            width: 110px;
+            height: 38px;
+            font-size: 1rem;
+            border-radius: 20px;
+            background: #4bc0c5;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            transition: background 0.2s;
+        }
+
+        .got-it-btn:hover {
+            background: #36a3a8;
+        }
+
+        .leaderboard-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            z-index: 101;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 0.5s;
+        }
+
+        .leaderboard-overlay.visible {
+            display: flex;
+        }
+
+        .leaderboard-content {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-content h3 {
+            color: #6a5acd;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #leaderboard-list {
+            list-style: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        #leaderboard-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+        }
+
+        #leaderboard-list li:first-child {
+            font-weight: bold;
+            color: #d4af37;
+            font-size: 1.3rem;
+        }
+
+        #leaderboard-list li .score-val {
+            font-weight: bold;
+        }
+
         .hint-overlay.visible {
             display: flex;
         }
-        
+
         .hint-content {
             background: rgba(255, 255, 255, 0.9);
             color: #333;
@@ -366,35 +695,166 @@
             text-align: center;
             max-width: 90%;
         }
-        
+
         .hint-content h3 {
             margin-bottom: 15px;
             color: #4bc0c0;
         }
-        
+
+        /* Flip card container */
+        .instructions-flip-container {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 20px auto;
+        }
+
+        .instructions-flip-card {
+            width: 100%;
+            position: relative;
+            transition: transform 0.6s cubic-bezier(.4, 2, .6, 1);
+            transform-style: preserve-3d;
+            min-height: 210px;
+            cursor: pointer;
+        }
+
+        .instructions-flip-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .instructions-flip-front,
+        .instructions-flip-back {
+            position: absolute;
+            width: 100%;
+            backface-visibility: hidden;
+            left: 0;
+            top: 0;
+            min-height: 210px;
+            box-sizing: border-box;
+        }
+
+        .instructions-flip-back {
+            transform: rotateY(180deg);
+        }
+
+        .flip-note {
+            margin-top: 18px;
+            font-size: 0.95rem;
+            color: #ffd700;
+            opacity: 0.85;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+
+        /* Stylish and larger merge guide icons */
+        .instructions-flip-back .merge-chain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 10px;
+            overflow-x: auto;
+            margin-top: 18px;
+            padding-bottom: 8px;
+        }
+
+        .instructions-flip-back .merge-step {
+            min-width: 60px;
+            margin: 0 6px;
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .instructions-flip-back .merge-shape {
+            width: 44px;
+            height: 44px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border-radius: 12px;
+            border: 2.5px solid transparent;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.13);
+            transition: box-shadow 0.2s;
+        }
+
+        .instructions-flip-back .merge-shape .shape {
+            width: 80%;
+            height: 80%;
+        }
+
+        .instructions-flip-back .merge-step div:last-child {
+            font-size: 0.95rem;
+            margin-top: 2px;
+            color: #ff8c42;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            text-shadow: 0 1px 0 #fffbe8;
+        }
+
+        .instructions-flip-back .merge-arrow {
+            font-size: 1.7rem;
+            margin: 0 6px;
+            color: #ffd700;
+            align-self: center;
+            text-shadow: 0 1px 0 #fffbe8;
+        }
+
         @keyframes appear {
-            0% { transform: scale(0); }
-            70% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(0);
+            }
+
+            70% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         @keyframes pop {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(0.8);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .mobile-controls {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -404,7 +864,7 @@
             height: 150px;
             margin: 20px auto 0;
         }
-        
+
         .mobile-btn {
             background: rgba(255, 255, 255, 0.15);
             border: none;
@@ -415,12 +875,27 @@
             color: white;
             font-size: 1.5rem;
         }
-        
-        .mobile-btn.up { grid-column: 2; grid-row: 1; }
-        .mobile-btn.left { grid-column: 1; grid-row: 2; }
-        .mobile-btn.right { grid-column: 3; grid-row: 2; }
-        .mobile-btn.down { grid-column: 2; grid-row: 3; }
-        
+
+        .mobile-btn.up {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .mobile-btn.left {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .mobile-btn.right {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .mobile-btn.down {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
         .swipe-hint {
             text-align: center;
             margin-top: 10px;
@@ -429,7 +904,7 @@
             opacity: 0.8;
             display: none;
         }
-        
+
         .game-rules {
             background: rgba(255, 215, 0, 0.1);
             border-left: 4px solid #ffd700;
@@ -437,66 +912,71 @@
             margin: 15px 0;
             border-radius: 0 8px 8px 0;
         }
-        
+
         @media (max-width: 500px) {
             .title {
                 font-size: 2.2rem;
             }
-            
+
             .score-container {
                 padding: 8px 15px;
                 min-width: 100px;
             }
-            
+
             .score-title {
                 font-size: 0.9rem;
             }
-            
+
             .score {
                 font-size: 1.5rem;
             }
-            
+
             .game-info {
                 flex-direction: column;
             }
-            
+
             .controls {
                 justify-content: center;
             }
-            
+
             .btn span {
                 display: none;
             }
-            
+
             .btn i {
                 margin-right: 0;
             }
-            
+
             .mobile-controls {
                 width: 130px;
                 height: 130px;
             }
-            
-            .merge-chain {
-                justify-content: center;
-            }
-            
+
+
+
             .merge-step {
                 min-width: 70px;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1 class="title">MindMerge</h1>
-            <div class="score-container">
-                <div class="score-title">SCORE</div>
-                <div class="score">0</div>
+            <div style="display: flex; gap: 15px;">
+                <div class="score-container">
+                    <div class="score-title">SCORE</div>
+                    <div class="score">0</div>
+                </div>
+                <div class="best-container">
+                    <div class="score-title">BEST</div>
+                    <div class="best-score">0</div>
+                </div>
             </div>
         </header>
-        
+
         <div class="game-info">
             <div class="controls">
                 <button class="btn" id="restart-btn">
@@ -508,23 +988,25 @@
                     <span>Undo</span>
                 </button>
             </div>
+
             <div class="controls">
+                <button class="btn leaderboard-btn" id="leaderboard-btn">
+                    <i class="fas fa-trophy"></i>
+                </button>
                 <button class="btn hint-btn" id="hint-btn">
                     <i class="fas fa-lightbulb"></i>
-                    <span>Hint</span>
                 </button>
                 <button class="btn dark-mode-btn" id="dark-mode-btn">
                     <i class="fas fa-moon"></i>
-                    <span>Dark Mode</span>
                 </button>
             </div>
         </div>
-        
+
         <div class="game-container">
             <div class="grid-container" id="grid-container">
                 <!-- Grid cells will be generated by JS -->
             </div>
-            
+
             <div class="game-message" id="game-message">
                 <h2 id="message-title">You Win!</h2>
                 <p id="message-text">Congratulations! You've reached the MindMerge tile.</p>
@@ -533,90 +1015,105 @@
                     <button class="btn" id="new-game-btn">New Game</button>
                 </div>
             </div>
-            
+
             <div class="hint-overlay" id="hint-overlay">
                 <div class="hint-content">
                     <h3>Strategy Tip</h3>
-                    <p>Try to merge your tiles toward one corner to create larger shapes more efficiently.</p>
-                    <p>Focus on creating chains: Circles → Squares → Triangles → Stars → Diamonds → MindMerge</p>
-                    <p><strong>NEW:</strong> Merging two MindMerge tiles creates a new random shape!</p>
-                    <button class="btn hint-btn" id="close-hint-btn">Got It!</button>
+                    <ul style="text-align:left; margin: 0 0 18px 0; padding-left: 1.2em; font-size: 1.05rem;">
+                        <li>Keep your highest tiles in one corner and build around it.</li>
+                        <li>Plan merges ahead to avoid blocking yourself.</li>
+                    </ul>
+                    <p style="font-size:0.97rem;"><strong>NEW:</strong> Merging two M tiles creates a random
+                        shape!</p>
+                    <button class="btn hint-btn got-it-btn" id="close-hint-btn">Got It!</button>
+                </div>
+            </div>
+            <!-- Leaderboard overlay START -->
+            <div class="leaderboard-overlay" id="leaderboard-overlay">
+                <div class="leaderboard-content">
+                    <h3>Leaderboard</h3>
+                    <ul id="leaderboard-list"></ul>
+                    <div class="btn-container">
+                        <button class="btn" id="close-leaderboard-btn">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Leaderboard overlay END -->
+        </div>
+
+        <div class="instructions-flip-container">
+            <div class="instructions-flip-card" id="instructions-flip-card">
+                <div class="instructions-flip-front instructions">
+                    <h2>How to Play</h2>
+                    <p>Use your <strong>arrow keys</strong> or swipe to move the tiles. When two tiles with the same
+                        shape touch, they merge into the next shape!</p>
+                    <p>Reach the <strong>MindMerge</strong> tile to win the game. Try to get the highest score!</p>
+                    <div class="game-rules">
+                        <p><strong>NEW RULE:</strong> When two MindMerge tiles merge, they create a new random shape
+                            (Circle, Square, Triangle, Star, or Diamond) to keep the game going!</p>
+                    </div>
+                    <div class="flip-note">Tap to know more</div>
+                </div>
+                <div class="instructions-flip-back instructions">
+                    <h2>Shape Merge Guide</h2>
+                    <div class="merge-chain">
+                        <div class="merge-step">
+                            <div class="merge-shape">
+                                <div class="shape circle" style="color: #EEE4DA;"></div>
+                            </div>
+                            <div>Circle</div>
+                        </div>
+                        <div class="merge-arrow">→</div>
+                        <div class="merge-step">
+                            <div class="merge-shape">
+                                <div class="shape square" style="color: #EDE0C8;"></div>
+                            </div>
+                            <div>Square</div>
+                        </div>
+                        <div class="merge-arrow">→</div>
+                        <div class="merge-step">
+                            <div class="merge-shape">
+                                <div class="shape triangle" style="color: #F2B179;"></div>
+                            </div>
+                            <div>Triangle</div>
+                        </div>
+                        <div class="merge-arrow">→</div>
+                        <div class="merge-step">
+                            <div class="merge-shape">
+                                <div class="shape star" style="color: #F59563;"></div>
+                            </div>
+                            <div>Star</div>
+                        </div>
+                        <div class="merge-arrow">→</div>
+                        <div class="merge-step">
+                            <div class="merge-shape">
+                                <div class="shape diamond" style="color: #F67C5F;"></div>
+                            </div>
+                            <div>Diamond</div>
+                        </div>
+                        <div class="merge-arrow">→</div>
+                        <div class="merge-step">
+                            <div class="merge-shape">
+                                <div class="shape mindmerge" style="color: #F65E3B;"></div>
+                            </div>
+                            <div>MindMerge</div>
+                        </div>
+                    </div>
+                    <div class="flip-note">Tap to go back</div>
                 </div>
             </div>
         </div>
-        
-        <div class="instructions">
-            <h2>How to Play</h2>
-            <p>Use your <strong>arrow keys</strong> or swipe to move the tiles. When two tiles with the same shape touch, they merge into the next shape!</p>
-            <p>Reach the <strong>MindMerge</strong> tile to win the game. Try to get the highest score!</p>
-            
-            <div class="game-rules">
-                <p><strong>NEW RULE:</strong> When two MindMerge tiles merge, they create a new random shape (Circle, Square, Triangle, Star, or Diamond) to keep the game going!</p>
-            </div>
-            
-            <div class="merge-chain">
-                <div class="merge-step">
-                    <div class="merge-shape">
-                        <div class="shape circle" style="background: #EEE4DA;"></div>
-                    </div>
-                    <div>Circle</div>
-                </div>
-                <div class="merge-arrow">+</div>
-                <div class="merge-step">
-                    <div class="merge-shape">
-                        <div class="shape circle" style="background: #EEE4DA;"></div>
-                    </div>
-                    <div>Circle</div>
-                </div>
-                <div class="merge-arrow">→</div>
-                <div class="merge-step">
-                    <div class="merge-shape">
-                        <div class="shape square" style="background: #EDE0C8;"></div>
-                    </div>
-                    <div>Square</div>
-                </div>
-                
-                <div class="merge-arrow">→</div>
-                <div class="merge-step">
-                    <div class="merge-shape">
-                        <div class="shape triangle" style="background: #F2B179;"></div>
-                    </div>
-                    <div>Triangle</div>
-                </div>
-                
-                <div class="merge-arrow">→</div>
-                <div class="merge-step">
-                    <div class="merge-shape">
-                        <div class="shape star" style="background: #F59563;"></div>
-                    </div>
-                    <div>Star</div>
-                </div>
-                
-                <div class="merge-arrow">→</div>
-                <div class="merge-step">
-                    <div class="merge-shape">
-                        <div class="shape diamond" style="background: #F67C5F;"></div>
-                    </div>
-                    <div>Diamond</div>
-                </div>
-                
-                <div class="merge-arrow">→</div>
-                <div class="merge-step">
-                    <div class="merge-shape">
-                        <div class="shape mindmerge" style="background: #F65E3B;"></div>
-                    </div>
-                    <div>MindMerge</div>
-                </div>
-            </div>
-        </div>
-        
+
+        <!-- Uncomment the block if you want button controls -->
+        <!--
         <div class="mobile-controls">
             <button class="mobile-btn up" id="up-btn"><i class="fas fa-arrow-up"></i></button>
             <button class="mobile-btn left" id="left-btn"><i class="fas fa-arrow-left"></i></button>
             <button class="mobile-btn right" id="right-btn"><i class="fas fa-arrow-right"></i></button>
             <button class="mobile-btn down" id="down-btn"><i class="fas fa-arrow-down"></i></button>
         </div>
-        
+        -->
+
         <div class="swipe-hint" id="swipe-hint">
             <i class="fas fa-hand-point-up"></i> Swipe to move tiles on mobile
         </div>
@@ -626,7 +1123,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Game constants
             const GRID_SIZE = 4;
-            
+
             // Game state
             let grid = [];
             let score = 0;
@@ -634,13 +1131,13 @@
             let gameWon = false;
             let gridStateHistory = [];
             let winShown = false; // Track if win message has been shown
-            
+
             // Swipe detection variables
             let touchStartX = 0;
             let touchStartY = 0;
             let touchEndX = 0;
             let touchEndY = 0;
-            
+
             // DOM elements
             const gridContainer = document.getElementById('grid-container');
             const scoreDisplay = document.querySelector('.score');
@@ -649,14 +1146,22 @@
             const messageText = document.getElementById('message-text');
             const hintOverlay = document.getElementById('hint-overlay');
             const swipeHint = document.getElementById('swipe-hint');
-            
+            const bestScoreDisplay = document.querySelector('.best-score');
+
+            const leaderboardOverlay = document.getElementById('leaderboard-overlay');
+            const leaderboardList = document.getElementById('leaderboard-list');
+            const SCORE_STORAGE_KEY = 'mindMergeScores';
+            let scores = [];
+            let personalBest = 0;
+
             // Initialize the game
             function initGame() {
+                loadScores();
                 createGrid();
                 addStartTiles();
                 updateScore(0);
                 render();
-                
+
                 // Add event listeners
                 document.addEventListener('keydown', handleKeyPress);
                 document.getElementById('restart-btn').addEventListener('click', restartGame);
@@ -666,61 +1171,65 @@
                 document.getElementById('keep-playing-btn').addEventListener('click', closeMessage);
                 document.getElementById('new-game-btn').addEventListener('click', restartGame);
                 document.getElementById('close-hint-btn').addEventListener('click', closeHint);
-                
+                // ...leaderboard...
+                document.getElementById('leaderboard-btn').addEventListener('click', showLeaderboard);
+                document.getElementById('close-leaderboard-btn').addEventListener('click', closeLeaderboard);
+
+
                 // Mobile controls
                 document.getElementById('up-btn').addEventListener('click', () => moveTiles('up'));
                 document.getElementById('down-btn').addEventListener('click', () => moveTiles('down'));
                 document.getElementById('left-btn').addEventListener('click', () => moveTiles('left'));
                 document.getElementById('right-btn').addEventListener('click', () => moveTiles('right'));
-                
+
                 // Add touch event listeners for swipe
                 gridContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
                 gridContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
                 gridContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
-                
+
                 // Handle window resize for responsive tiles
                 window.addEventListener('resize', render);
-                
+
                 // Detect if user is on mobile
                 if ('ontouchstart' in window || navigator.maxTouchPoints) {
                     swipeHint.style.display = 'block';
                 }
             }
-            
+
             // Touch event handlers for swipe detection
             function handleTouchStart(event) {
                 touchStartX = event.touches[0].clientX;
                 touchStartY = event.touches[0].clientY;
             }
-            
+
             function handleTouchMove(event) {
                 // Allow scrolling if user is not on the grid
                 if (event.target !== gridContainer && !gridContainer.contains(event.target)) {
                     return;
                 }
-                
+
                 // Prevent scrolling only when we're tracking a potential swipe on the grid
-                if (Math.abs(event.touches[0].clientX - touchStartX) > 10 || 
+                if (Math.abs(event.touches[0].clientX - touchStartX) > 10 ||
                     Math.abs(event.touches[0].clientY - touchStartY) > 10) {
                     event.preventDefault();
                 }
             }
-            
+
             function handleTouchEnd(event) {
                 touchEndX = event.changedTouches[0].clientX;
                 touchEndY = event.changedTouches[0].clientY;
-                
+
                 handleSwipe();
             }
-            
+
             // Determine swipe direction
             function handleSwipe() {
                 const diffX = touchEndX - touchStartX;
                 const diffY = touchEndY - touchStartY;
-                
+
                 // Minimum swipe distance to register as a move
                 const minSwipeDistance = 30;
-                
+
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     // Horizontal swipe
                     if (Math.abs(diffX) > minSwipeDistance) {
@@ -741,12 +1250,12 @@
                     }
                 }
             }
-            
+
             // Create the grid structure
             function createGrid() {
                 gridContainer.innerHTML = '';
                 grid = [];
-                
+
                 for (let i = 0; i < GRID_SIZE; i++) {
                     grid[i] = [];
                     for (let j = 0; j < GRID_SIZE; j++) {
@@ -757,18 +1266,63 @@
                     }
                 }
             }
-            
+
+            //add leaderboard
+            function loadScores() {
+                const savedScores = localStorage.getItem(SCORE_STORAGE_KEY);
+                scores = savedScores ? JSON.parse(savedScores) : [];
+                personalBest = scores.length > 0 ? scores[0].score : 0;
+                updateLeaderboardUI();
+                updateScore(score);
+            }
+
+            function saveCurrentScore() {
+                if (score === 0) return;
+                const date = new Date();
+                scores.push({ score: score, date: date.toLocaleDateString() });
+                scores.sort((a, b) => b.score - a.score);
+                scores = scores.slice(0, 10); // Keep top 10
+                localStorage.setItem(SCORE_STORAGE_KEY, JSON.stringify(scores));
+                if (score > personalBest) {
+                    personalBest = score;
+                }
+                updateLeaderboardUI();
+                updateScore(score);
+            }
+
+            function showLeaderboard() {
+                leaderboardOverlay.classList.add('visible');
+            }
+
+            function closeLeaderboard() {
+                leaderboardOverlay.classList.remove('visible');
+            }
+
+            function updateLeaderboardUI() {
+                leaderboardList.innerHTML = '';
+                if (scores.length === 0) {
+                    leaderboardList.innerHTML = '<li>No scores yet. Play a game!</li>';
+                    return;
+                }
+                scores.forEach((s, index) => {
+                    const li = document.createElement('li');
+                    const icon = index === 0 ? '<i class="fas fa-trophy"></i> ' : `${index + 1}. `;
+                    li.innerHTML = `<span>${icon}${s.date}</span> <span class="score-val">${s.score}</span>`;
+                    leaderboardList.appendChild(li);
+                });
+            }
+
             // Add starting tiles
             function addStartTiles() {
                 addRandomTile();
                 addRandomTile();
                 saveState();
             }
-            
+
             // Add a random tile to an empty cell
             function addRandomTile() {
                 const emptyCells = [];
-                
+
                 for (let i = 0; i < GRID_SIZE; i++) {
                     for (let j = 0; j < GRID_SIZE; j++) {
                         if (!grid[i][j]) {
@@ -776,17 +1330,17 @@
                         }
                     }
                 }
-                
+
                 if (emptyCells.length > 0) {
                     const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-                    grid[randomCell.x][randomCell.y] = { 
-                        value: 0, 
+                    grid[randomCell.x][randomCell.y] = {
+                        value: 0,
                         merged: false,
                         id: Math.random().toString(36).substr(2, 9)
                     };
                 }
             }
-            
+
             // Save current game state for undo functionality
             function saveState() {
                 const state = {
@@ -795,43 +1349,43 @@
                     gameWon: gameWon
                 };
                 gridStateHistory.push(state);
-                
+
                 // Limit history to 10 states
                 if (gridStateHistory.length > 10) {
                     gridStateHistory.shift();
                 }
             }
-            
+
             // Undo the last move
             function undoMove() {
                 if (gridStateHistory.length > 1) {
                     gridStateHistory.pop(); // Remove current state
                     const prevState = gridStateHistory.pop();
-                    
+
                     grid = JSON.parse(JSON.stringify(prevState.grid));
                     score = prevState.score;
                     gameWon = prevState.gameWon;
                     gameOver = false;
                     winShown = false; // Reset win shown state
-                    
+
                     updateScore(score);
                     render();
                 }
             }
-            
+
             // Render the grid with tiles
             function render() {
                 // Clear existing tiles
                 document.querySelectorAll('.tile').forEach(tile => tile.remove());
-                
+
                 // Calculate cell size based on container dimensions
                 const containerWidth = gridContainer.clientWidth;
                 const padding = 10; // Padding of grid container
                 const gap = 10; // Gap between cells
-                
+
                 // Calculate cell size accounting for padding and gaps
                 const cellSize = (containerWidth - (padding * 2) - (gap * (GRID_SIZE - 1))) / GRID_SIZE;
-                
+
                 for (let i = 0; i < GRID_SIZE; i++) {
                     for (let j = 0; j < GRID_SIZE; j++) {
                         if (grid[i][j]) {
@@ -840,25 +1394,25 @@
                     }
                 }
             }
-            
+
             // Create a tile element
             function createTileElement(row, col, value, id, cellSize, gap) {
                 const tile = document.createElement('div');
                 tile.classList.add('tile', `level-${value}`);
                 tile.setAttribute('data-id', id);
-                
+
                 // Set tile size
                 tile.style.width = `${cellSize}px`;
                 tile.style.height = `${cellSize}px`;
-                
+
                 // Calculate position based on row/col
                 tile.style.top = `${(row * (cellSize + gap)) + gap}px`;
                 tile.style.left = `${(col * (cellSize + gap)) + gap}px`;
-                
+
                 const shape = document.createElement('div');
                 shape.classList.add('shape');
-                
-                switch(value) {
+
+                switch (value) {
                     case 0: // Circle
                         shape.classList.add('circle');
                         break;
@@ -878,16 +1432,16 @@
                         shape.classList.add('mindmerge');
                         break;
                 }
-                
+
                 tile.appendChild(shape);
                 gridContainer.appendChild(tile);
             }
-            
+
             // Handle keyboard input
             function handleKeyPress(e) {
                 if (gameOver) return;
-                
-                switch(e.key) {
+
+                switch (e.key) {
                     case 'ArrowUp':
                         moveTiles('up');
                         break;
@@ -902,14 +1456,19 @@
                         break;
                 }
             }
-            
+
             // Move tiles in the specified direction
             function moveTiles(direction) {
+                if (checkGameOver()) {
+                    showMessage('Game Over!', 'No more moves possible. Try again!');
+                    gameOver = true;
+                    saveCurrentScore();
+                }
                 if (gameOver) return;
-                
+
                 let moved = false;
                 let newGrid = JSON.parse(JSON.stringify(grid));
-                
+
                 // Reset merged status
                 for (let i = 0; i < GRID_SIZE; i++) {
                     for (let j = 0; j < GRID_SIZE; j++) {
@@ -918,9 +1477,9 @@
                         }
                     }
                 }
-                
+
                 // Process movement based on direction
-                switch(direction) {
+                switch (direction) {
                     case 'up':
                         for (let j = 0; j < GRID_SIZE; j++) {
                             for (let i = 1; i < GRID_SIZE; i++) {
@@ -958,13 +1517,13 @@
                         }
                         break;
                 }
-                
+
                 if (moved) {
                     grid = newGrid;
                     saveState();
                     addRandomTile();
                     render();
-                    
+
                     if (checkWin() && !winShown) {
                         showMessage('You Win!', 'Congratulations! You\'ve reached the MindMerge tile.');
                         winShown = true;
@@ -975,22 +1534,22 @@
                     }
                 }
             }
-            
+
             // Move a single tile in the grid
             function moveTile(grid, row, col, rowDir, colDir) {
                 let moved = false;
                 let currentRow = row;
                 let currentCol = col;
-                
+
                 while (true) {
                     const nextRow = currentRow + rowDir;
                     const nextCol = currentCol + colDir;
-                    
+
                     // Check if next position is within bounds
                     if (nextRow < 0 || nextRow >= GRID_SIZE || nextCol < 0 || nextCol >= GRID_SIZE) {
                         break;
                     }
-                    
+
                     // If next cell is empty, move there
                     if (!grid[nextRow][nextCol]) {
                         grid[nextRow][nextCol] = grid[currentRow][currentCol];
@@ -998,10 +1557,10 @@
                         currentRow = nextRow;
                         currentCol = nextCol;
                         moved = true;
-                    } 
+                    }
                     // If next cell has same value and not merged, merge
                     else if (
-                        grid[nextRow][nextCol].value === grid[currentRow][currentCol].value && 
+                        grid[nextRow][nextCol].value === grid[currentRow][currentCol].value &&
                         !grid[nextRow][nextCol].merged
                     ) {
                         // Special handling for merging two MindMerge tiles (level 5)
@@ -1016,7 +1575,7 @@
                             grid[nextRow][nextCol].merged = true;
                             updateScore(score + (2 ** grid[nextRow][nextCol].value) * 10);
                         }
-                        
+
                         grid[currentRow][currentCol] = null;
                         moved = true;
                         break;
@@ -1024,16 +1583,17 @@
                         break;
                     }
                 }
-                
+
                 return moved;
             }
-            
+
             // Update the score display
             function updateScore(newScore) {
                 score = newScore;
                 scoreDisplay.textContent = score;
+                bestScoreDisplay.textContent = personalBest;
             }
-            
+
             // Check if the player has won
             function checkWin() {
                 for (let i = 0; i < GRID_SIZE; i++) {
@@ -1045,7 +1605,7 @@
                 }
                 return false;
             }
-            
+
             // Check if the game is over (no moves left)
             function checkGameOver() {
                 // Check for any empty cells
@@ -1056,67 +1616,67 @@
                         }
                     }
                 }
-                
+
                 // Check for possible merges
                 for (let i = 0; i < GRID_SIZE; i++) {
                     for (let j = 0; j < GRID_SIZE; j++) {
                         const current = grid[i][j];
-                        
+
                         // Check right
                         if (j < GRID_SIZE - 1) {
-                            const right = grid[i][j+1];
+                            const right = grid[i][j + 1];
                             if (current.value === right.value) {
                                 return false;
                             }
                         }
-                        
+
                         // Check down
                         if (i < GRID_SIZE - 1) {
-                            const down = grid[i+1][j];
+                            const down = grid[i + 1][j];
                             if (current.value === down.value) {
                                 return false;
                             }
                         }
                     }
                 }
-                
+
                 return true;
             }
-            
+
             // Show game message (win or game over)
             function showMessage(title, text) {
                 messageTitle.textContent = title;
                 messageText.textContent = text;
                 gameMessage.classList.add('visible');
-                
+
                 if (title === 'You Win!') {
                     gameMessage.classList.add('win');
                 } else {
                     gameMessage.classList.remove('win');
                 }
             }
-            
+
             // Close the game message
             function closeMessage() {
                 gameMessage.classList.remove('visible');
             }
-            
+
             // Show hint overlay
             function showHint() {
                 hintOverlay.classList.add('visible');
             }
-            
+
             // Close hint overlay
             function closeHint() {
                 hintOverlay.classList.remove('visible');
             }
-            
+
             // Toggle dark mode
             function toggleDarkMode() {
                 document.body.classList.toggle('light-mode');
                 const btn = document.getElementById('dark-mode-btn');
                 const icon = btn.querySelector('i');
-                
+
                 if (document.body.classList.contains('light-mode')) {
                     document.body.style.background = 'linear-gradient(135deg, #f5f7fa, #c3cfe2)';
                     btn.querySelector('span').textContent = 'Light Mode';
@@ -1129,9 +1689,10 @@
                     icon.classList.add('fa-moon');
                 }
             }
-            
+
             // Restart the game
             function restartGame() {
+                saveCurrentScore();
                 gridStateHistory = [];
                 score = 0;
                 gameOver = false;
@@ -1143,10 +1704,19 @@
                 render();
                 closeMessage();
             }
-            
+
             // Initialize the game
             initGame();
         });
+
+        // Flip How to Play card on click/tap
+        const flipCard = document.getElementById('instructions-flip-card');
+        if (flipCard) {
+            flipCard.addEventListener('click', () => {
+                flipCard.classList.toggle('flipped');
+            });
+        }
     </script>
 </body>
+
 </html>
