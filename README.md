@@ -1,7 +1,7 @@
 # MindMerge - Enhanced Puzzle Game 🧠
 
 <div align="center">
-  <img src="https://img.itch.zone/aW1nLzE0MjU0MjQ0LnBuZw==/315x250%23c/%2F%2F%2B.png" alt="MindMerge Screenshot" width="300">
+  <img src="mindmerge.png" alt="MindMerge Screenshot" width="300">
   <p><em>"Where shapes collide and minds expand!"</em></p>
 </div>
 
