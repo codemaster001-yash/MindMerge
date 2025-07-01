@@ -7,8 +7,7 @@
 
 **MindMerge** is a captivating puzzle game that challenges your memory, logic, and pattern recognition skills. Merge colorful shapes to unlock new patterns and reach the ultimate **MindMerge tile**! Inspired by 2048's clean design with a fresh twist on gameplay.
 
-[![Play Now](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](#play-now) 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Play Now](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](#play-now)
 
 ## 🚀 New Features & Enhancements
 
@@ -127,10 +126,6 @@ Found a bug? Have a feature idea? Contributions are welcome!
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin amazing-feature`)
 5. Open a pull request
-
-## 📜 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
